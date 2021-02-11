@@ -7,6 +7,7 @@ export function Principal() {
     const [ posicao, setPosicao ] = useState({})
     const [ nascerDoSol, setNascerDoSol ] = useState([])
     const [ porDoSol, setPorDoSol ] = useState([])
+    const [ horaAtual, setHoraAtual ] = useState([])
     
 
     useEffect(() => {
@@ -35,28 +36,37 @@ export function Principal() {
 
                 setNascerDoSol(arrayNascerDoSol)
                 setPorDoSol(arrayPorDoSol)
+
+                pegarDataEHora()
+
                 
+
             }).catch( erro => {
                 alert(erro.message);
             })
         }
-        
-        
 
     }, [posicao])
 
-   
-    // const pegarPosicao = () => {
+    const pegarDataEHora  = () => {
+        const dataEHora = Date()
+        let arrayDataEHora = dataEHora.split(" ")
+        let arrayHora = arrayDataEHora[4].split(":")
+        arrayHora[0] = Number(arrayHora[0])
+        arrayHora[1] = Number(arrayHora[1])
+        
+        setHoraAtual(arrayHora)
 
-    //     if (navigator.geolocation) {
-    //         navigator.geolocation.getCurrentPosition((position) => {
-    //             setPosicao(position.coords)
-    //         });
-    //     } else {
-    //         alert("GeoLocalização não está ativa ou não é suportada por este navegador.")
-    //     }
+        
+    }
 
-    // }
+    useEffect(() => {
+        if(nascerDoSol.length > 0 && porDoSol.length > 0 && horaAtual.length > 0) {
+            console.log("nascerDoSol, porDoSol, horaAtual =  ", nascerDoSol, porDoSol, horaAtual )  
+        }
+        
+    }, [horaAtual,nascerDoSol, porDoSol ])
+    
 
     
 
