@@ -3,6 +3,7 @@ import { DivisaoPrincipal, DivisaoPredio, DivisaoJanelas } from './stylesPrincip
 import axios from 'axios'
 import { BASE_URL } from '../../constants/requisicoes'
 import ceuAzul from '../../assets/ceu-azul.jpg'
+import { Janela } from '../../components/Janela/Janela'
 
 export function Principal() {
     const [ posicao, setPosicao ] = useState({})
@@ -10,6 +11,7 @@ export function Principal() {
     const [ porDoSol, setPorDoSol ] = useState([])
     const [ horaAtual, setHoraAtual ] = useState([])
     const [ luzDoDia, setLuzDoDia ] = useState(true) 
+    const [ janelas, setJanelas ] = useState([{id:1},{id:2},{id:3},{id:4},{id:5},{id:6},{id:7},{id:8},{id:9},{id:10},{id:11},{id:12}])
     
 
     useEffect(() => {
@@ -141,13 +143,20 @@ export function Principal() {
     //     }
     // }
 
-    
+    const componenteJanelas = janelas.map((janela) => {
+        return (
+            <Janela
+                key={janela.id}
+            />
+        )
+    })
+
     
     return <DivisaoPrincipal luz={luzDoDia} >
         <DivisaoPredio>
 
             <DivisaoJanelas>
-                
+                {componenteJanelas}
             </DivisaoJanelas>
 
         </DivisaoPredio>

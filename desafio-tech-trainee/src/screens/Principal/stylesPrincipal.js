@@ -35,4 +35,7 @@ export const DivisaoJanelas = styled.div`
     height: 90%;
 
     border: 1px solid black;
+
+    display: flex;
+    flex-wrap: wrap;
 `

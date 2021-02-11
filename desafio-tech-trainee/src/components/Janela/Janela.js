@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import { DivisaoJanela } from './stylesJanela'
 
 export function Janela() {
 
-    return  <div>
-        
-    </div>
+    return  <DivisaoJanela>
+
+    </DivisaoJanela>
 }
