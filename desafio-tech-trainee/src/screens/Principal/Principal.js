@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { DivisaoPrincipal } from './stylesPrincipal'
+import { DivisaoPrincipal, DivisaoPredio, DivisaoJanelas } from './stylesPrincipal'
 import axios from 'axios'
 import { BASE_URL } from '../../constants/requisicoes'
 import ceuAzul from '../../assets/ceu-azul.jpg'
@@ -144,7 +144,13 @@ export function Principal() {
     
     
     return <DivisaoPrincipal luz={luzDoDia} >
-        
+        <DivisaoPredio>
+
+            <DivisaoJanelas>
+                
+            </DivisaoJanelas>
+
+        </DivisaoPredio>
     </DivisaoPrincipal>
 
 
