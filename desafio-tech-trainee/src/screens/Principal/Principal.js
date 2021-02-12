@@ -159,7 +159,8 @@ export function Principal() {
         let novoArray = []
         for(let i = 0; i < qtdJanelas; i++) {
             const novaJanela = {
-                idJanela: i
+                idJanela: i,
+                luzLigada: escolherValorAleatorio()
             }
 
             novoArray = [...novoArray, novaJanela]
@@ -169,6 +170,16 @@ export function Principal() {
         setJanelas(novoArray)
        
     }
+
+    const escolherValorAleatorio = () => {
+        const numeroAleatorio = Math.random()
+        const numeroArredondado = Math.round(numeroAleatorio)
+        if(numeroArredondado === 0) {
+            return false
+        } else {
+            return true
+        }
+    }
     
     const componenteJanela = janelas.map((janela) => {
         return <Janela
@@ -176,6 +187,8 @@ export function Principal() {
             idJanela={janela.idJanela}
         />
     })
+
+    console.log("janelas", janelas)
 
     return <DivisaoPrincipal luz={luzDoDia} >
         <DivisaoPredio>
