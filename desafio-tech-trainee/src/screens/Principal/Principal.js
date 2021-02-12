@@ -11,7 +11,9 @@ export function Principal() {
     const [ porDoSol, setPorDoSol ] = useState([])
     const [ horaAtual, setHoraAtual ] = useState([])
     const [ luzDoDia, setLuzDoDia ] = useState(true) 
-    const [ janelas, setJanelas ] = useState([{id:1},{id:2},{id:3},{id:4},{id:5},{id:6},{id:7},{id:8},{id:9},{id:10},{id:11},{id:12}])
+    // const [ janelas, setJanelas ] = useState([{id:1},{id:2},{id:3},{id:4},{id:5},{id:6},{id:7},{id:8},{id:9},{id:10},{id:11},{id:12}])
+    const [ janelas, setJanelas ] = useState([])
+    const [ quantidadeJanelas, setQuantidadeJanelas ] = useState([12])
     
 
     useEffect(() => {
@@ -118,6 +120,8 @@ export function Principal() {
            } else {
             setLuzDoDia(false) 
            }
+
+           criarJanelas(quantidadeJanelas)
         }
         
     }, [horaAtual,nascerDoSol, porDoSol ])
@@ -143,20 +147,41 @@ export function Principal() {
     //     }
     // }
 
-    const componenteJanelas = janelas.map((janela) => {
-        return (
-            <Janela
-                key={janela.id}
-            />
-        )
+    // const componenteJanelas = janelas.map((janela) => {
+    //     return (
+    //         <Janela
+    //             key={janela.id}
+    //         />
+    //     )
+    // })
+
+    const criarJanelas = (qtdJanelas) => {
+        let novoArray = []
+        for(let i = 0; i < qtdJanelas; i++) {
+            const novaJanela = {
+                idJanela: i
+            }
+
+            novoArray = [...novoArray, novaJanela]
+            
+        }
+
+        setJanelas(novoArray)
+       
+    }
+    
+    const componenteJanela = janelas.map((janela) => {
+        return <Janela
+            key={janela.idJanela}
+            idJanela={janela.idJanela}
+        />
     })
 
-    
     return <DivisaoPrincipal luz={luzDoDia} >
         <DivisaoPredio>
 
             <DivisaoJanelas>
-                {componenteJanelas}
+                {componenteJanela}
             </DivisaoJanelas>
 
         </DivisaoPredio>
