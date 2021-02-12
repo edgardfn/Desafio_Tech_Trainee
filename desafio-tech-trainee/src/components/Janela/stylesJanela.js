@@ -7,4 +7,12 @@ export const DivisaoJanela = styled.div`
     border: 1px solid black;
 
     margin: 8px 32px 4px 32px; 
+
+
+`
+
+export const ImagemJanela = styled.img`
+    width: 100%;
+    height: 100%;
+    
 `
