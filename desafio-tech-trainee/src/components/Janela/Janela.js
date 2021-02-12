@@ -3,10 +3,12 @@ import { DivisaoJanela, ImagemJanela  } from './stylesJanela'
 import janelaDiaLuzDesligada from '../../assets/janela-dia-luzDesligada.png'
 import janelaLuzLigada from '../../assets/janela-luzLigada.png'
 import janelaNoiteLuzDesligada from '../../assets/janela-Noite-luzDesligada.png'
+import ceu from '../../assets/ceu-azul.jpg'
 
 
 
 export function Janela(props) {
+    const [ imagemJanela, setImagemJanela ] = useState("")
     
     // let imagemJanela
     // useEffect(() => {
@@ -28,13 +30,36 @@ export function Janela(props) {
     // }, [] )
 
     useEffect(() => {
-        console.log(props)
-    })
 
-   
+        verificaNoiteOuDia(props)
+
+    }, [props])
 
     
+    const verificaNoiteOuDia = (props) => {
+        if(props.luzDoDia) {
+            if(props.luzLigada) {
+                // imagemJanela = janelaLuzLigada
+                setImagemJanela(janelaLuzLigada)
+            } else {
+                // imagemJanela = janelaDiaLuzDesligada
+                setImagemJanela(janelaDiaLuzDesligada) 
+            }
+        } else {
+            if(props.luzLigada){
+                // imagemJanela = janelaLuzLigada
+                setImagemJanela(janelaLuzLigada) 
+            } else {
+                // imagemJanela = janelaNoiteLuzDesligada
+                setImagemJanela(janelaNoiteLuzDesligada)
+            }
+        }
+        
+    }      
+   
+    console.log("imagemJanela",imagemJanela)
+    
     return  <DivisaoJanela ligada={props.luzLigada}>
-        {/* <ImagemJanela src={imagemJanela} alt={"Imagem Janela"} /> */}
+        <ImagemJanela src={imagemJanela} alt={"Imagem Janela"} />
     </DivisaoJanela>
 }
