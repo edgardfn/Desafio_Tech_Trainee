@@ -39,27 +39,27 @@ export function Janela(props) {
     const verificaNoiteOuDia = (props) => {
         if(props.luzDoDia) {
             if(props.luzLigada) {
-                // imagemJanela = janelaLuzLigada
                 setImagemJanela(janelaLuzLigada)
             } else {
-                // imagemJanela = janelaDiaLuzDesligada
                 setImagemJanela(janelaDiaLuzDesligada) 
             }
         } else {
             if(props.luzLigada){
-                // imagemJanela = janelaLuzLigada
                 setImagemJanela(janelaLuzLigada) 
             } else {
-                // imagemJanela = janelaNoiteLuzDesligada
                 setImagemJanela(janelaNoiteLuzDesligada)
             }
         }
         
-    }      
+    } 
+    
+    const onClickJanela = () => {
+        props.onClickJanela(props.idJanela)
+    }
    
-    console.log("imagemJanela",imagemJanela)
+    
     
     return  <DivisaoJanela ligada={props.luzLigada}>
-        <ImagemJanela src={imagemJanela} alt={"Imagem Janela"} />
+        <ImagemJanela onClick={onClickJanela} src={imagemJanela} alt={"Imagem Janela"} />
     </DivisaoJanela>
 }

@@ -24,7 +24,7 @@ export function Principal() {
     }, [])
 
     const pegarGeoLocalizacao = () => {
-        console.log("caiu na função")
+        
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
                 return setPosicao(position.coords)
@@ -49,7 +49,7 @@ export function Principal() {
         
         try {
             const resposta = await axios.get(`${BASE_URL}?lat=${posicao.latitude}&lng=${posicao.longitude}`)
-            console.log("resposta", resposta)
+
             let arrayNascerDoSol = resposta.data.results.sunrise.split(":")
             arrayNascerDoSol[0] = Number(arrayNascerDoSol[0]) - 3;
             arrayNascerDoSol[1] = Number(arrayNascerDoSol[1])
@@ -139,25 +139,61 @@ export function Principal() {
             return true
         }
     }
-    
-    const componenteJanela = janelas.map((janela) => {
-        return <Janela
-            key={janela.idJanela}
-            idJanela={janela.idJanela}
-            luzDoDia={luzDoDia}
-            luzLigada={janela.luzLigada}
-        />
-    })
 
+    const onCLickJanela = (idJanela) => {
+        console.log(idJanela)
+    }
     
+    // const componenteJanela = janelas.map((janela) => {
+    //     return <Janela
+    //         key={janela.idJanela}
+    //         idJanela={janela.idJanela}
+    //         luzDoDia={luzDoDia}
+    //         luzLigada={janela.luzLigada}
+    //         onClickJanela={onCLickJanela}
+    //     />
+    // })
+
+    // let componenteJanela = []
+    // useEffect(() => {
+        
+    //    if(janelas !== []) {
+    //        console.log("caiu no if")
+    //         componenteJanela = janelas.map((janela) => {
+    //             return <Janela
+    //                 key={janela.idJanela}
+    //                 idJanela={janela.idJanela}
+    //                 luzDoDia={luzDoDia}
+    //                 luzLigada={janela.luzLigada}
+    //                 onClickJanela={onCLickJanela}
+    //             />
+    //         })
+    //     }
+        
+        
+    // }, [janelas])
+
+    const exibirJanelas = (janelas) => {
+        const componenteJanela = janelas.map((janela) => {
+            return <Janela
+                key={janela.idJanela}
+                idJanela={janela.idJanela}
+                luzDoDia={luzDoDia}
+                luzLigada={janela.luzLigada}
+                onClickJanela={onCLickJanela}
+            />
+        })
+        return componenteJanela
+    }
     
    
+    
 
     return <DivisaoPrincipal luz={luzDoDia} >
         <DivisaoPredio>
 
             <DivisaoJanelas>
-                {componenteJanela}
+                {exibirJanelas(janelas)}
             </DivisaoJanelas>
 
         </DivisaoPredio>
