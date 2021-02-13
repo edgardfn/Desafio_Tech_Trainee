@@ -140,38 +140,24 @@ export function Principal() {
         }
     }
 
-    const onCLickJanela = (idJanela) => {
-        console.log(idJanela)
+    const onCLickJanela = (idJanelaSelecionado) => {
+        console.log("caiu na função")
+
+        const novaListaJanelas = janelas.map((janela) => {
+            if(janela.idJanela === idJanelaSelecionado) {
+                const novaJanela = {
+                    ...janela,
+                    luzLigada: !janela.luzLigada
+                }
+                return novaJanela
+            } else {
+                return janela
+            }
+        })
+
+        setJanelas(novaListaJanelas)
     }
     
-    // const componenteJanela = janelas.map((janela) => {
-    //     return <Janela
-    //         key={janela.idJanela}
-    //         idJanela={janela.idJanela}
-    //         luzDoDia={luzDoDia}
-    //         luzLigada={janela.luzLigada}
-    //         onClickJanela={onCLickJanela}
-    //     />
-    // })
-
-    // let componenteJanela = []
-    // useEffect(() => {
-        
-    //    if(janelas !== []) {
-    //        console.log("caiu no if")
-    //         componenteJanela = janelas.map((janela) => {
-    //             return <Janela
-    //                 key={janela.idJanela}
-    //                 idJanela={janela.idJanela}
-    //                 luzDoDia={luzDoDia}
-    //                 luzLigada={janela.luzLigada}
-    //                 onClickJanela={onCLickJanela}
-    //             />
-    //         })
-    //     }
-        
-        
-    // }, [janelas])
 
     const exibirJanelas = (janelas) => {
         const componenteJanela = janelas.map((janela) => {
