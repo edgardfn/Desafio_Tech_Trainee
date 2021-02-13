@@ -40,17 +40,8 @@ export const DivisaoJanelas = styled.div`
     align-items: center;
 `
 
-export const DivisaoInterruptores = styled.div`
-    height: 10%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+export const DivisaoInterruptor = styled.div`
+   
 `
 
-export const DivisaoInterruptorOn = styled.div`
-    height: 100%;
-    
-`
-export const DivisaoInterruptorOf = styled.div`
-    height: 100%;
-`
+

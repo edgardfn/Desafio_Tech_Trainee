@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { DivisaoPrincipal, DivisaoPredio, DivisaoJanelas, DivisaoInterruptores, DivisaoInterruptorOf, DivisaoInterruptorOn } from './stylesPrincipal'
+import { DivisaoPrincipal, DivisaoPredio, DivisaoJanelas, DivisaoInterruptor, DivisaoInterruptores, DivisaoInterruptorOf, DivisaoInterruptorOn } from './stylesPrincipal'
 import axios from 'axios'
 import { BASE_URL } from '../../constants/requisicoes'
 import { Janela } from '../../components/Janela/Janela'
 import interruptorOn from '../../assets/botao-on.svg'
 import interruptorOff from '../../assets/botao-off.svg'
 import {BotaoInterruptor} from '../../components/BotaoInterruptor/BotaoInterruptor'
+
 
 export function Principal() {
     const [ posicao, setPosicao ] = useState({})
@@ -16,6 +17,7 @@ export function Principal() {
     // const [ janelas, setJanelas ] = useState([{id:1},{id:2},{id:3},{id:4},{id:5},{id:6},{id:7},{id:8},{id:9},{id:10},{id:11},{id:12}])
     const [ janelas, setJanelas ] = useState([])
     const [ quantidadeJanelas, setQuantidadeJanelas ] = useState([12])
+    const [ apagarTodasAsLuzes, setApagarTodasAsLuzes] = useState(false)
 
 
     useEffect(() => {
@@ -176,28 +178,54 @@ export function Principal() {
 
     
     
-    const onClickBotaoOn = () => {
-        const novaListaJanelas = janelas.map((janela) => {
-            const janelaAlterada = {
-                ...janela,
-                luzLigada: true
-            }
+    // const onClickBotaoOn = () => {
+    //     const novaListaJanelas = janelas.map((janela) => {
+    //         const janelaAlterada = {
+    //             ...janela,
+    //             luzLigada: true
+    //         }
+    //         return janelaAlterada
+    //     })
+
+    //     setJanelas(novaListaJanelas)
+    // }
+
+    // const onClickBotaoOff = () => {
+    //     const novaListaJanelas = janelas.map((janela) => {
+    //         const janelaAlterada = {
+    //             ...janela,
+    //             luzLigada: false
+    //         }
+    //         return janelaAlterada
+    //     })
+
+    //     setJanelas(novaListaJanelas)
+    // }
+
+    const onClickBotaoInterruptor = () => {
+        if(apagarTodasAsLuzes) {
+            const novaListaJanelas = janelas.map((janela) => {
+                const janelaAlterada = {
+                    ...janela,
+                    luzLigada: false
+                }
+                return janelaAlterada
+            })
+    
+            setJanelas(novaListaJanelas)
+        } else {
+            const novaListaJanelas = janelas.map((janela) => {
+                const janelaAlterada = {
+                    ...janela,
+                    luzLigada: true
+                }
             return janelaAlterada
-        })
+            })
 
-        setJanelas(novaListaJanelas)
-    }
+            setJanelas(novaListaJanelas)
+        }
 
-    const onClickBotaoOff = () => {
-        const novaListaJanelas = janelas.map((janela) => {
-            const janelaAlterada = {
-                ...janela,
-                luzLigada: false
-            }
-            return janelaAlterada
-        })
-
-        setJanelas(novaListaJanelas)
+        setApagarTodasAsLuzes(!apagarTodasAsLuzes)        
     }
     
 
@@ -208,23 +236,14 @@ export function Principal() {
                 {exibirJanelas(janelas)}
             </DivisaoJanelas>
 
-            <DivisaoInterruptores>
+            <DivisaoInterruptor>
 
-                <DivisaoInterruptorOn>
-                    <BotaoInterruptor 
-                        imagemInterrruptor={interruptorOn}
-                        onClickBotao={onClickBotaoOn}
-                    />
-                </DivisaoInterruptorOn>
-
-                <DivisaoInterruptorOf>
-                    <BotaoInterruptor 
-                        imagemInterrruptor={interruptorOff}
-                        onClickBotao={onClickBotaoOff}
-                    />
-                </DivisaoInterruptorOf>
+                <BotaoInterruptor 
+                    onClickBotao={onClickBotaoInterruptor}
+                    textoBotao={apagarTodasAsLuzes ? "Apagar Todas" : "Acender Todas"}
+                />
                 
-            </DivisaoInterruptores>
+            </DivisaoInterruptor>
 
         </DivisaoPredio>
     </DivisaoPrincipal>
