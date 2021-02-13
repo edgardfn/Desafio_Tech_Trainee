@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { DivisaoPrincipal, DivisaoPredio, DivisaoJanelas } from './stylesPrincipal'
+import { DivisaoPrincipal, DivisaoPredio, DivisaoJanelas, DivisaoInterruptores, DivisaoInterruptorOf, DivisaoInterruptorOn } from './stylesPrincipal'
 import axios from 'axios'
 import { BASE_URL } from '../../constants/requisicoes'
-import ceuAzul from '../../assets/ceu-azul.jpg'
 import { Janela } from '../../components/Janela/Janela'
+import interruptorOn from '../../assets/botao-on.svg'
+import interruptorOff from '../../assets/botao-off.svg'
+import {BotaoInterruptor} from '../../components/BotaoInterruptor/BotaoInterruptor'
 
 export function Principal() {
     const [ posicao, setPosicao ] = useState({})
@@ -171,8 +173,32 @@ export function Principal() {
         })
         return componenteJanela
     }
+
     
-   
+    
+    const onClickBotaoOn = () => {
+        const novaListaJanelas = janelas.map((janela) => {
+            const janelaAlterada = {
+                ...janela,
+                luzLigada: true
+            }
+            return janelaAlterada
+        })
+
+        setJanelas(novaListaJanelas)
+    }
+
+    const onClickBotaoOff = () => {
+        const novaListaJanelas = janelas.map((janela) => {
+            const janelaAlterada = {
+                ...janela,
+                luzLigada: false
+            }
+            return janelaAlterada
+        })
+
+        setJanelas(novaListaJanelas)
+    }
     
 
     return <DivisaoPrincipal luz={luzDoDia} >
@@ -181,6 +207,24 @@ export function Principal() {
             <DivisaoJanelas>
                 {exibirJanelas(janelas)}
             </DivisaoJanelas>
+
+            <DivisaoInterruptores>
+
+                <DivisaoInterruptorOn>
+                    <BotaoInterruptor 
+                        imagemInterrruptor={interruptorOn}
+                        onClickBotao={onClickBotaoOn}
+                    />
+                </DivisaoInterruptorOn>
+
+                <DivisaoInterruptorOf>
+                    <BotaoInterruptor 
+                        imagemInterrruptor={interruptorOff}
+                        onClickBotao={onClickBotaoOff}
+                    />
+                </DivisaoInterruptorOf>
+                
+            </DivisaoInterruptores>
 
         </DivisaoPredio>
     </DivisaoPrincipal>

@@ -32,10 +32,25 @@ export const DivisaoPredio = styled.div`
 
 export const DivisaoJanelas = styled.div`
     margin: 16px 8px 0 8px;
-    height: 90%;
+    height: 85%;
 
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+`
+
+export const DivisaoInterruptores = styled.div`
+    height: 10%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+`
+
+export const DivisaoInterruptorOn = styled.div`
+    height: 100%;
+    
+`
+export const DivisaoInterruptorOf = styled.div`
+    height: 100%;
 `
