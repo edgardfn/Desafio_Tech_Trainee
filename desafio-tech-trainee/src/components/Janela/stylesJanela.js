@@ -1,9 +1,8 @@
 import styled from 'styled-components'
 
 export const DivisaoJanela = styled.div`
-    /* width: 70px; */
     height: 50px;
-    margin: 4px 16px; 
+    margin: 4px 32px; 
 
 `
 

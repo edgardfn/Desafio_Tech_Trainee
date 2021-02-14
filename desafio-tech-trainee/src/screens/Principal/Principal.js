@@ -3,8 +3,6 @@ import { DivisaoPrincipal, DivisaoPredio, DivisaoJanelas, DivisaoInterruptor, Di
 import axios from 'axios'
 import { BASE_URL } from '../../constants/requisicoes'
 import { Janela } from '../../components/Janela/Janela'
-import interruptorOn from '../../assets/botao-on.svg'
-import interruptorOff from '../../assets/botao-off.svg'
 import {BotaoInterruptor} from '../../components/BotaoInterruptor/BotaoInterruptor'
 
 
@@ -14,7 +12,6 @@ export function Principal() {
     const [ porDoSol, setPorDoSol ] = useState([])
     const [ horaAtual, setHoraAtual ] = useState([])
     const [ luzDoDia, setLuzDoDia ] = useState(true) 
-    // const [ janelas, setJanelas ] = useState([{id:1},{id:2},{id:3},{id:4},{id:5},{id:6},{id:7},{id:8},{id:9},{id:10},{id:11},{id:12}])
     const [ janelas, setJanelas ] = useState([])
     const [ quantidadeJanelas, setQuantidadeJanelas ] = useState([12])
     const [ apagarTodasAsLuzes, setApagarTodasAsLuzes] = useState(false)
@@ -65,16 +62,10 @@ export function Principal() {
             setNascerDoSol(arrayNascerDoSol)
             setPorDoSol(arrayPorDoSol)
 
-            // pegarDataEHora(nascerDoSol, porDoSol)
-
         }catch(erro) {
             alert(erro.message)
         }
 
-        // if(nascerDoSol.length > 0 || porDoSol.length > 0) {
-        //     pegarDataEHora(nascerDoSol, porDoSol)
-        // }
-        
     }
 
 
@@ -145,8 +136,7 @@ export function Principal() {
     }
 
     const onCLickJanela = (idJanelaSelecionado) => {
-        console.log("caiu na função")
-
+       
         const novaListaJanelas = janelas.map((janela) => {
             if(janela.idJanela === idJanelaSelecionado) {
                 const novaJanela = {
@@ -175,32 +165,6 @@ export function Principal() {
         })
         return componenteJanela
     }
-
-    
-    
-    // const onClickBotaoOn = () => {
-    //     const novaListaJanelas = janelas.map((janela) => {
-    //         const janelaAlterada = {
-    //             ...janela,
-    //             luzLigada: true
-    //         }
-    //         return janelaAlterada
-    //     })
-
-    //     setJanelas(novaListaJanelas)
-    // }
-
-    // const onClickBotaoOff = () => {
-    //     const novaListaJanelas = janelas.map((janela) => {
-    //         const janelaAlterada = {
-    //             ...janela,
-    //             luzLigada: false
-    //         }
-    //         return janelaAlterada
-    //     })
-
-    //     setJanelas(novaListaJanelas)
-    // }
 
     const onClickBotaoInterruptor = () => {
         if(apagarTodasAsLuzes) {

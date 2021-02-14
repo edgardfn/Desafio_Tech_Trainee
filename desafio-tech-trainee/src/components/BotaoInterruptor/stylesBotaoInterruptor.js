@@ -9,15 +9,6 @@ export const DivisaoInterruptor = styled.div`
 
 `
 
-// export const ImagemInterruptor = styled.img`
-//     height: 90%;
-    
-//     &:hover {
-//         height: 100%;
-//     }
-// `
-
-
 export const BotaoOnOff = styled.button`
     padding: 12px 16px;
     border-radius: 8px;
