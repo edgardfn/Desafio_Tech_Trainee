@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { DivisaoPrincipal, DivisaoPredio, DivisaoJanelas, DivisaoInterruptor, DivisaoInterruptores, DivisaoInterruptorOf, DivisaoInterruptorOn } from './stylesPrincipal'
+import { DivisaoPrincipal, DivisaoPredio, DivisaoJanelas, DivisaoInterruptor } from './stylesPrincipal'
 import axios from 'axios'
 import { BASE_URL } from '../../constants/requisicoes'
 import { Janela } from '../../components/Janela/Janela'
